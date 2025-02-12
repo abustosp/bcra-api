@@ -26,10 +26,13 @@ def index():
         # Cargar el JSON
         data = json.loads(json_data)
         id = str(data["results"][endpoint_index]["idVariable"])
-        url = "https://api.bcra.gob.ar/estadisticas/v1/datosvariable/"+id+"/"+fecha_desde+"/"+fecha_hasta
-        # Filtrar los datos por fecha
-        #filtered_data = filtrar_por_fecha(data, fecha_desde, fecha_hasta)
-        datos = requests.get(url, verify=False).json()
+        url = "https://api.bcra.gob.ar/estadisticas/v3.0/Monetarias/"+id
+        params = {
+            "desde": fecha_desde,
+            "hasta": fecha_hasta
+        }
+        response = requests.get(url, verify=False, params=params)
+        datos = response.json()
         endpoint = str(data["results"][endpoint_index]["descripcion"])
         
         return render_template('resultado.html', endpoint=endpoint, datos=datos)

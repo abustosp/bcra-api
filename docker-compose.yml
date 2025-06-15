@@ -7,3 +7,9 @@ services:
     ports:
       - "5001:5000"
     restart: unless-stopped
+    networks:
+      - nginx_default
+
+networks:
+  nginx_default:
+    external: true

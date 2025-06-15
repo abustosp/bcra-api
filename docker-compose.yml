@@ -1,6 +1,7 @@
 services:
-  bcra:
-    container_name: bcra
+  api-bcra:
+    container_name: api-bcra
+    image: abustosp/api-bcra
     build:
       context: .
       dockerfile: Dockerfile
